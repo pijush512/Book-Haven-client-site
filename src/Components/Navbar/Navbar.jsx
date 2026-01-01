@@ -19,15 +19,23 @@ const Navbar = () => {
   };
 
   const links = <>
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/allBooks">All Books</NavLink>
-    <NavLink to="/addBooks">Add Books</NavLink>
-    <NavLink to="/myBooks">My Books</NavLink>
+    <li><NavLink to="/">Home</NavLink></li>
+    <li><NavLink to="/allBooks">All Books</NavLink></li>
+    <li><NavLink to="/allBooks">About Us</NavLink></li>
+    {
+      user && (
+        <>
+          <li><NavLink to="/addBooks">Add Books</NavLink></li>
+          <li><NavLink to="/myBooks">My Books</NavLink></li>
+        </>
+      )
+    }
+
   </>
 
   return (
     <div className='bg-[#687FE5]'>
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar w-11/12 mx-auto ">
         <Toaster position="top-center" />
         <div className="navbar-start">
           <div className="dropdown">
@@ -52,15 +60,20 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
           {user ? (
-
-            <div className="flex items-center gap-3">
-              {user.photoURL && (
-                <img src={user.photoURL} className="w-10 h-10 rounded-full border" alt="User" />
-              )}
-              <button onClick={handleSignOut}
-                className="px-6 py-2 bg-white text-purple-500 font-bold rounded hover:bg-purple-100 transition">
-                Sign Out
-              </button>
+            <div className="dropdown dropdown-bottom dropdown-end">
+              <div tabIndex={0} role="button" className="">
+                {user.photoURL && (
+                  <img src={user.photoURL} className="w-10 h-10 rounded-full border" alt="User" />
+                )}
+              </div>
+              <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><a>My Profile</a></li>
+                <li><a>Dashboard</a></li>
+                <button onClick={handleSignOut}
+                  className="px-6 py-2 bg-white text-purple-500 font-bold rounded hover:bg-purple-100 transition">
+                  Sign Out
+                </button>
+              </ul>
             </div>
           ) : (
             <div className="flex gap-2">
