@@ -6,7 +6,7 @@ const LatestBooks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/books/latest')
+    fetch('https://book-haven-server-site.vercel.app/books/latest')
       .then(res => res.json())
       .then(data => {
         setBooks(data);

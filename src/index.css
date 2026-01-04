@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  --color-primary: #687FE5;
+  --color-secondary: #4E61B9;
+  --color-accent: #F3F4F6;
+
+  /* এখানে btn-primary নামে গ্রেডিয়েন্ট কালারটি ডিফাইন করা হলো */
+  --background-image-btn-primary: linear-gradient(to right, #301CA0, #7132CA);
+  --background-image-btn-secondary: linear-gradient(to right, #7132CA, #301CA0);
+}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import MainLayout from '../Layouts/MainLayout';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import Home from '../Pages/Home/Home';
@@ -10,58 +10,97 @@ import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
 import BookDitals from '../Components/BookDitals/BookDitals';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import UpdateBook from '../Components/UpdateBook/UpdateBook';
+import DashboardLayout from '../Layouts/Dashboard/DashboardLayout';
+import Profile from '../Pages/Profile';
+import UpdateBook from '../Layouts/UpdateBook';
+import AdminHome from '../Pages/Dashboard/AdminDashboard/AdminHome';
+import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers';
+import ManageBooks from '../Pages/Dashboard/AdminDashboard/ManageBooks';
+import { AuthContext } from '../context/AuthContex'; // বানানটি পুনরায় চেক করুন (Context vs Contex)
+import About from '../Pages/About';
+import Contact from '../Pages/Contact';
+import Services from '../Pages/Services.jsx';
 
-
-
+// DashboardIndex component
+const DashboardIndex = () => {
+    const { isAdmin, loading } = useContext(AuthContext);
+    
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        );
+    }
+    
+    return isAdmin ? <AdminHome /> : <Profile />;
+};
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: MainLayout,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'allBooks', element: <AllBooks /> },
+      { path: 'login', element: <Login /> },
+      { path: 'register', element: <Register /> },
+      { path: 'bookDitals/:id', element: <BookDitals /> },
+      {
+        path: 'about',
+        Component: About
+      },
+      {
+        path: 'contact',
+        Component: Contact,
+      },
+      {
+        path: 'service',
+        Component: Services,
+      }
+    ]
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
-        index: true,
-        path: '/',
-        Component: Home,
+        index: true, 
+        element: <DashboardIndex /> 
       },
       {
-        path: '/allBooks',
-        Component: AllBooks,
+        path: 'adminHome',
+        element: <AdminHome />
       },
       {
-        path: '/addBooks',
-        element: <PrivateRoute>
-          <AddBooks></AddBooks>
-        </PrivateRoute>,
+        path: 'manageUsers',
+        element: <ManageUsers />
       },
       {
-        path: '/myBooks',
-        element: <PrivateRoute>
-          <MyBooks></MyBooks>
-        </PrivateRoute>,
+        path: 'manageBooks',
+        element: <ManageBooks />
       },
       {
-        path: '/login',
-        Component: Login,
+        path: 'myBooks',
+        element: <MyBooks />
       },
       {
-        path: '/register',
-        Component: Register,
+        path: 'addBooks',
+        element: <AddBooks />
       },
       {
-        path: '/bookDitals/:id',
-        Component: BookDitals,
+        path: 'updateBook/:id',
+        element: <UpdateBook />
       },
       {
-        path: '/updateBook/:id',
-        Component: UpdateBook,
+        path: 'profile',
+        element: <Profile />
       },
-
-
-
     ]
   }
 ]);
-
