@@ -17,8 +17,6 @@ const Navbar = () => {
         console.log(error.message);
       });
   };
-
-  // Active status এর জন্য আন্ডারলাইন স্টাইল এখানে ডিফাইন করা হয়েছে
   const navLinkStyles = ({ isActive }) => 
     isActive 
       ? "text-indigo-400 font-bold underline underline-offset-8 decoration-2" 
@@ -54,7 +52,7 @@ const Navbar = () => {
             <div className="bg-indigo-600 p-2 rounded-xl group-hover:rotate-12 transition-transform duration-300">
                 <img className='h-7 w-7 object-contain brightness-0 invert' src="https://i.ibb.co.com/ynM8D2yC/download-2-removebg-preview.png" alt="Book Logo" />
             </div>
-            <span className="text-xl font-black text-white tracking-tighter hidden md:block group-hover:text-indigo-400 transition-colors">BOOK HAVEN</span>
+            {/* <span className="text-xl font-black text-white tracking-tighter hidden md:block group-hover:text-indigo-400 transition-colors">BOOK HAVEN</span> */}
           </Link>
         </div>
 
