@@ -1,12 +1,11 @@
 import React from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
-import Swal from 'sweetalert2'; // আপনি যেহেতু ইনস্টল করেছেন, এটি সাবমিট কনফার্মেশনের জন্য ব্যবহার করছি
+import Swal from 'sweetalert2'; 
 
 const Contact = () => {
   
   const handleContactSubmit = (e) => {
     e.preventDefault();
-    // SweetAlert দিয়ে একটি সুন্দর মেসেজ দেখানো
     Swal.fire({
       title: 'Message Sent!',
       text: 'Thank you for reaching out. We will get back to you soon.',
@@ -21,7 +20,6 @@ const Contact = () => {
     <div className="min-h-screen bg-gray-50/50 py-16">
       <div className="w-11/12 mx-auto max-w-6xl">
         
-        {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-black text-gray-800 mb-4 tracking-tight">Contact Us</h1>
           <p className="text-gray-500 font-medium max-w-2xl mx-auto italic">
@@ -32,7 +30,6 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* Contact Info Cards (Left Side) */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-6 group hover:shadow-md transition-all">
               <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-xl group-hover:bg-blue-600 group-hover:text-white transition-all">
@@ -64,7 +61,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="bg-gray-900 p-8 rounded-[2rem] text-white">
               <p className="font-bold mb-6 text-center">Follow our Journey</p>
               <div className="flex justify-center gap-4">
@@ -74,8 +70,6 @@ const Contact = () => {
               </div>
             </div>
           </div>
-
-          {/* Contact Form (Right Side) */}
           <div className="lg:col-span-2 bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-gray-100 relative overflow-hidden">
             <div className="relative z-10">
               <h3 className="text-2xl font-bold text-gray-800 mb-8">Send us a Message</h3>
@@ -103,7 +97,6 @@ const Contact = () => {
                 </button>
               </form>
             </div>
-            {/* Decorative element */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-50 rounded-full blur-3xl opacity-50"></div>
           </div>
 

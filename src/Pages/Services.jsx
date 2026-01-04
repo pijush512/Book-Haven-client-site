@@ -88,8 +88,6 @@ const Services = () => {
             </div>
           ))}
         </div>
-
-        {/* Statistics Section (Adds to the 10 sections requirement) */}
         <div className="mt-28 bg-indigo-600 rounded-[3rem] p-12 md:p-20 flex flex-wrap justify-around items-center text-white gap-8">
            <div className="text-center">
               <h2 className="text-5xl font-black mb-2">98%</h2>
