@@ -16,7 +16,7 @@ import UpdateBook from '../Layouts/UpdateBook';
 import AdminHome from '../Pages/Dashboard/AdminDashboard/AdminHome';
 import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers';
 import ManageBooks from '../Pages/Dashboard/AdminDashboard/ManageBooks';
-import { AuthContext } from '../context/AuthContex'; // বানানটি পুনরায় চেক করুন (Context vs Contex)
+import { AuthContext } from '../context/AuthContex'; 
 import About from '../Pages/About';
 import Contact from '../Pages/Contact';
 import Services from '../Pages/Services.jsx';
@@ -42,11 +42,21 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'allBooks', element: <AllBooks /> },
-      { path: 'login', element: <Login /> },
-      { path: 'register', element: <Register /> },
-      { path: 'bookDitals/:id', element: <BookDitals /> },
+      { 
+        index: true, element: <Home /> 
+      },
+      {
+         path: 'allBooks', element: <AllBooks /> 
+        },
+      { 
+        path: 'login', element: <Login /> 
+      },
+      { 
+        path: 'register', element: <Register /> 
+      },
+      { 
+        path: 'bookDitals/:id', element: <BookDitals /> 
+      },
       {
         path: 'about',
         Component: About
