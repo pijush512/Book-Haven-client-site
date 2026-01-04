@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../context/AuthContex'; // আপনার কনটেক্সট পাথ চেক করে নিন
+import { AuthContext } from '../context/AuthContex'; 
 
 const UpdateBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAdmin } = useContext(AuthContext); // isAdmin রোল নিয়ে আসা হলো
-  const [loading, setLoading] = useState(true); // লোডার স্টেট
+  const { isAdmin } = useContext(AuthContext); 
+  const [loading, setLoading] = useState(true); 
 
   const [formData, setFormData] = useState({
     title: "",
@@ -18,8 +18,6 @@ const UpdateBook = () => {
     summary: "",
     coverImage: "",
   });
-
-  // ডাটাবেস থেকে বর্তমান বইয়ের তথ্য নিয়ে আসা
   useEffect(() => {
     setLoading(true);
     fetch(`https://book-haven-server-site.vercel.app/books/${id}`)
@@ -65,8 +63,6 @@ const UpdateBook = () => {
             timer: 2000,
             showConfirmButton: false
           });
-
-          // রোল অনুযায়ী নেভিগেশন (এটিই আপনার বাগ ফিক্স করবে)
           if (isAdmin) {
             navigate("/dashboard/manageBooks");
           } else {
@@ -81,7 +77,6 @@ const UpdateBook = () => {
       });
   };
 
-  // লোডিং অবস্থায় একটি সুন্দর স্পিনার (Requirement 1 - Loaders)
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96">
@@ -101,7 +96,7 @@ const UpdateBook = () => {
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {/* Title */}
+
         <div className="form-control md:col-span-2">
           <label className="label font-bold text-gray-700">Book Title</label>
           <input
@@ -109,8 +104,6 @@ const UpdateBook = () => {
             type="text" name="title" value={formData.title} onChange={handleChange} placeholder="The Alchemist" required
           />
         </div>
-
-        {/* Author */}
         <div className="form-control">
           <label className="label font-bold text-gray-700">Author</label>
           <input
@@ -119,7 +112,6 @@ const UpdateBook = () => {
           />
         </div>
 
-        {/* Genre */}
         <div className="form-control">
           <label className="label font-bold text-gray-700">Genre</label>
           <input
@@ -128,7 +120,6 @@ const UpdateBook = () => {
           />
         </div>
 
-        {/* Rating */}
         <div className="form-control">
           <label className="label font-bold text-gray-700">Rating (0 - 5)</label>
           <input
@@ -136,8 +127,6 @@ const UpdateBook = () => {
             type="number" name="rating" value={formData.rating} onChange={handleChange} placeholder="4.8" min="0" max="5" step="0.1" required
           />
         </div>
-
-        {/* Cover Image URL */}
         <div className="form-control">
           <label className="label font-bold text-gray-700">Cover Image URL</label>
           <input
@@ -146,7 +135,6 @@ const UpdateBook = () => {
           />
         </div>
 
-        {/* Summary */}
         <div className="form-control md:col-span-2">
           <label className="label font-bold text-gray-700">Brief Summary</label>
           <textarea
@@ -155,7 +143,6 @@ const UpdateBook = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <div className="md:col-span-2 mt-6">
           <button type="submit" className="btn btn-primary w-full text-white bg-indigo-600 hover:bg-indigo-700 border-none shadow-lg text-lg uppercase">
             Save Changes

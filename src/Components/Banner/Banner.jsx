@@ -54,7 +54,6 @@ const Banner = () => {
                 </div>
               </div>
 
-              {/* Visual Hint for Scroll (Requirement 2) */}
               <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
                 <div className="w-1 h-12 bg-white/50 rounded-full"></div>
               </div>

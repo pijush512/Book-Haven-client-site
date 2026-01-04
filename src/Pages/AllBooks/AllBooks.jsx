@@ -6,8 +6,6 @@ import { FaStar, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 8;
 
@@ -26,8 +24,6 @@ const AllBooks = () => {
   }, []);
 
   if (loading) return <Spinner />;
-
-  // Pagination Logic
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
@@ -35,25 +31,21 @@ const AllBooks = () => {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // পেজ চেঞ্জ হলে উপরে নিয়ে যাবে
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="w-11/12 mx-auto">
-
-        {/* Title Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-black text-gray-800 uppercase tracking-tight">Our Library Collection</h1>
           <div className="h-1 w-20 bg-indigo-600 mx-auto mt-2 rounded-full"></div>
         </div>
 
-        {/* Books Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {currentBooks.map((book) => (
             <div key={book._id} className="card bg-white shadow-xl hover:shadow-2xl transition-all border border-gray-100 rounded-3xl overflow-hidden group">
 
-              {/* Book Cover Image */}
               <figure className="h-72 overflow-hidden relative">
                 <img
                   src={book.coverImage}
@@ -64,8 +56,6 @@ const AllBooks = () => {
                   <FaStar /> {book.rating}
                 </div>
               </figure>
-
-              {/* Card Body */}
               <div className="p-6">
                 <div className="badge badge-outline text-indigo-600 font-bold mb-2">{book.genre}</div>
                 <h2 className="text-2xl font-bold text-gray-800 line-clamp-1">{book.title}</h2>
@@ -87,8 +77,6 @@ const AllBooks = () => {
             </div>
           ))}
         </div>
-
-        {/* Pagination Controls */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center mt-16 gap-2">
             <button
